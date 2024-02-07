@@ -13,15 +13,26 @@ struct DragTarget {
     let label: String
 
     init?(filepath: String) {
-        let url = URL(filePath: filepath)
+        let url: URL? = {
+            if filepath.starts(with: "/") {
+                return URL(filePath: filepath)
+            }
+            guard let pwd = ProcessInfo.processInfo.environment["PWD"]
+            else { return nil }
+            var url = URL(filePath: pwd)
+            url.append(path: filepath)
+            return url
+        }()
+        guard let url = url else { return nil }
+        let path = url.absoluteString.replacingOccurrences(of: "file://", with: "")
 
-        guard FileManager.default.fileExists(atPath: filepath),
+        guard FileManager.default.fileExists(atPath: path),
               let provider = NSItemProvider(contentsOf: url)
         else { return nil }
 
         self.provider = provider
         self.label = url.lastPathComponent
-        self.image = NSWorkspace.shared.icon(forFile: filepath)
+        self.image = NSWorkspace.shared.icon(forFile: path)
     }
 }
 
