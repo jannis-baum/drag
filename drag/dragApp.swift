@@ -7,11 +7,45 @@
 
 import SwiftUI
 
+struct DragTarget {
+    let provider: NSItemProvider
+    let image: NSImage
+    let label: String
+
+    init?(filepath: String) {
+        let url = URL(filePath: filepath)
+
+        guard FileManager.default.fileExists(atPath: filepath),
+              let provider = NSItemProvider(contentsOf: url)
+        else { return nil }
+
+        self.provider = provider
+        self.label = url.lastPathComponent
+        self.image = NSWorkspace.shared.icon(forFile: filepath)
+    }
+}
+
 @main
 struct dragApp: App {
+    let target: DragTarget
+
+    init() {
+        #if DEBUG
+        let arg = 0
+        #else
+        let arg = 1
+        #endif
+        guard CommandLine.arguments.count > arg,
+              let target = DragTarget(filepath: CommandLine.arguments[arg])
+        else {
+            fatalError("usage: drag FILE")
+        }
+        self.target = target
+    }
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(target: self.target)
         }
     }
 }

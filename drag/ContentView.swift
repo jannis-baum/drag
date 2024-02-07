@@ -8,19 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    let target: DragTarget
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
+            Image(nsImage: self.target.image)
+                .font(.largeTitle)
                 .foregroundStyle(.tint)
-                .onDrag({
-                    NSItemProvider(contentsOf: URL(fileURLWithPath: "/Users/jannisbaum/Desktop/test.jpeg"))!
-                })
-        }
+            Text(self.target.label)
+        }.onDrag({ self.target.provider })
         .padding()
     }
-}
-
-#Preview {
-    ContentView()
 }
