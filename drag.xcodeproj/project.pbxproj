@@ -11,6 +11,7 @@
 		CA0F61E52B73F0DD0046CF63 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0F61E42B73F0DD0046CF63 /* ContentView.swift */; };
 		CA0F61E72B73F0DE0046CF63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA0F61E62B73F0DE0046CF63 /* Assets.xcassets */; };
 		CA0F61EA2B73F0DE0046CF63 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA0F61E92B73F0DE0046CF63 /* Preview Assets.xcassets */; };
+		CADF29C22B740D7F003A5EA4 /* PanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADF29C12B740D7F003A5EA4 /* PanelController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		CA0F61E62B73F0DE0046CF63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA0F61E92B73F0DE0046CF63 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CA0F61EB2B73F0DE0046CF63 /* drag.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = drag.entitlements; sourceTree = "<group>"; };
+		CADF29C12B740D7F003A5EA4 /* PanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				CA0F61E22B73F0DD0046CF63 /* dragApp.swift */,
+				CADF29C12B740D7F003A5EA4 /* PanelController.swift */,
 				CA0F61E42B73F0DD0046CF63 /* ContentView.swift */,
 				CA0F61E62B73F0DE0046CF63 /* Assets.xcassets */,
 				CA0F61EB2B73F0DE0046CF63 /* drag.entitlements */,
@@ -139,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CADF29C22B740D7F003A5EA4 /* PanelController.swift in Sources */,
 				CA0F61E52B73F0DD0046CF63 /* ContentView.swift in Sources */,
 				CA0F61E32B73F0DD0046CF63 /* dragApp.swift in Sources */,
 			);

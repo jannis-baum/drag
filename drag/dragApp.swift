@@ -27,7 +27,7 @@ struct DragTarget {
 
 @main
 struct dragApp: App {
-    let target: DragTarget
+    let panel: PanelController
 
     init() {
         #if DEBUG
@@ -40,12 +40,14 @@ struct dragApp: App {
         else {
             fatalError("usage: drag FILE")
         }
-        self.target = target
+
+        self.panel = PanelController()
+        let view = ContentView(target: target)
+        self.panel.contentView = NSHostingView(rootView: view)
+        self.panel.makeKeyAndOrderFront(nil)
     }
 
     var body: some Scene {
-        WindowGroup {
-            ContentView(target: self.target)
-        }
+        Settings {}
     }
 }
