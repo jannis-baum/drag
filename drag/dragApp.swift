@@ -7,33 +7,49 @@
 
 import SwiftUI
 
+enum DragTargetError: LocalizedError {
+    case noCwd
+    case nonExistingFile(String)
+
+    var errorDescription: String? {
+        switch self {
+        case .noCwd: "Could not determine current working directory"
+        case let .nonExistingFile(file): "File \"\(file)\" does not exist"
+        }
+    }
+}
+
 struct DragTarget {
     let provider: NSItemProvider
     let image: NSImage
     let label: String
 
-    init?(filepath: String) {
-        let url: URL? = {
-            if filepath.starts(with: "/") {
-                return URL(filePath: filepath)
+    init(filepath: String) throws {
+        let url: URL = try {
+            let tildeResolved = filepath.replacingOccurrences(of: "~", with: NSHomeDirectory())
+            if tildeResolved.starts(with: "/") {
+                return URL(filePath: tildeResolved)
             }
             guard let pwd = ProcessInfo.processInfo.environment["PWD"]
-            else { return nil }
+            else { throw DragTargetError.noCwd }
             var url = URL(filePath: pwd)
             url.append(path: filepath)
             return url
         }()
-        guard let url = url else { return nil }
-        let path = url.absoluteString.replacingOccurrences(of: "file://", with: "")
+        let path = url.path(percentEncoded: false)
 
         guard FileManager.default.fileExists(atPath: path),
               let provider = NSItemProvider(contentsOf: url)
-        else { return nil }
+        else { throw DragTargetError.nonExistingFile(path) }
 
         self.provider = provider
         self.label = url.lastPathComponent
         self.image = NSWorkspace.shared.icon(forFile: path)
     }
+}
+
+func printUsage() {
+    print("usage: \(CommandLine.arguments[0]) FILE")
 }
 
 @main
@@ -46,11 +62,20 @@ struct dragApp: App {
         #else
         let arg = 1
         #endif
-        guard CommandLine.arguments.count > arg,
-              let target = DragTarget(filepath: CommandLine.arguments[arg])
-        else {
-            fatalError("usage: drag FILE")
+        guard CommandLine.arguments.count > arg else {
+            printUsage()
+            exit(1)
         }
+
+        let target = {
+            do {
+                return try DragTarget(filepath: CommandLine.arguments[arg])
+            } catch {
+                print(error.localizedDescription)
+                printUsage()
+                exit(1)
+            }
+        }()
 
         self.panel = PanelController()
         let view = ContentView(target: target)
