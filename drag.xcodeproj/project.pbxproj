@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		CA0F61E32B73F0DD0046CF63 /* dragApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0F61E22B73F0DD0046CF63 /* dragApp.swift */; };
 		CA0F61E52B73F0DD0046CF63 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0F61E42B73F0DD0046CF63 /* ContentView.swift */; };
-		CA0F61E72B73F0DE0046CF63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA0F61E62B73F0DE0046CF63 /* Assets.xcassets */; };
-		CA0F61EA2B73F0DE0046CF63 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA0F61E92B73F0DE0046CF63 /* Preview Assets.xcassets */; };
 		CADF29C22B740D7F003A5EA4 /* PanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADF29C12B740D7F003A5EA4 /* PanelController.swift */; };
 /* End PBXBuildFile section */
 
@@ -18,8 +16,6 @@
 		CA0F61DF2B73F0DD0046CF63 /* drag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = drag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA0F61E22B73F0DD0046CF63 /* dragApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dragApp.swift; sourceTree = "<group>"; };
 		CA0F61E42B73F0DD0046CF63 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		CA0F61E62B73F0DE0046CF63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CA0F61E92B73F0DE0046CF63 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CA0F61EB2B73F0DE0046CF63 /* drag.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = drag.entitlements; sourceTree = "<group>"; };
 		CADF29C12B740D7F003A5EA4 /* PanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,19 +53,9 @@
 				CA0F61E22B73F0DD0046CF63 /* dragApp.swift */,
 				CADF29C12B740D7F003A5EA4 /* PanelController.swift */,
 				CA0F61E42B73F0DD0046CF63 /* ContentView.swift */,
-				CA0F61E62B73F0DE0046CF63 /* Assets.xcassets */,
 				CA0F61EB2B73F0DE0046CF63 /* drag.entitlements */,
-				CA0F61E82B73F0DE0046CF63 /* Preview Content */,
 			);
 			path = drag;
-			sourceTree = "<group>";
-		};
-		CA0F61E82B73F0DE0046CF63 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				CA0F61E92B73F0DE0046CF63 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,8 +116,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA0F61EA2B73F0DE0046CF63 /* Preview Assets.xcassets in Resources */,
-				CA0F61E72B73F0DE0046CF63 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,7 +262,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"drag/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = PQYMU57QCE;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -305,7 +289,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"drag/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = PQYMU57QCE;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
