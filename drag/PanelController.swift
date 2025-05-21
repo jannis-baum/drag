@@ -15,10 +15,12 @@ class PanelController: NSPanel {
             backing: .buffered,
             defer: false
         )
-        self.center()
+        if let screen = self.screen {
+            self.setFrameTopLeftPoint(.init(x: 0, y: screen.visibleFrame.height))
+        }
         // float above all other windows
         self.isFloatingPanel = true
-        self.level = .floating
+        self.level = .mainMenu
         // appear in a fullscreen space
         self.collectionBehavior.insert(.fullScreenAuxiliary)
         // title
@@ -31,19 +33,9 @@ class PanelController: NSPanel {
         self.standardWindowButton(.zoomButton)?.isHidden = true
         // transparency
         self.backgroundColor = .clear
-
-        // regrab key focus if lost (for example when activated app is quit)
-        NotificationCenter.default.addObserver(
-            self, selector: #selector(windowLostKey),
-            name: NSWindow.didResignKeyNotification, object: nil
-        )
     }
 
     deinit {
         NotificationCenter.default.removeObserver(self)
-    }
-
-    @objc func windowLostKey(_ notification: NSNotification) {
-        NSApp.terminate(self)
     }
 }
