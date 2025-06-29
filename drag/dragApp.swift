@@ -81,9 +81,31 @@ struct dragApp: App {
         let view = ContentView(target: target)
         self.panel.contentView = NSHostingView(rootView: view)
         self.panel.makeKeyAndOrderFront(nil)
+
+        DispatchQueue.global(qos: .background).async {
+            waitForAnyKeyPress()
+        }
     }
 
     var body: some Scene {
         Settings {}
+    }
+}
+
+func waitForAnyKeyPress() {
+    var oldt = termios()
+    var newt = termios()
+
+    tcgetattr(STDIN_FILENO, &oldt) // Get current terminal settings
+    newt = oldt
+    newt.c_lflag &= ~UInt(ECHO | ICANON) // Disable echo and canonical mode
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt) // Apply new settings
+
+    print("Press any key to exit")
+    _ = getchar()
+
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt) // Restore terminal settings
+    DispatchQueue.main.async {
+        NSApplication.shared.terminate(nil)
     }
 }
